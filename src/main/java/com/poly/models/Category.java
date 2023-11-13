@@ -7,6 +7,7 @@ import lombok.Data;
 @Entity
 @Table(name = " Categories")
 @Data
+
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,4 +22,8 @@ public class Category {
 
     @Column(name = "description")
     private String description;
+    @Override
+public String toString() {
+    return "Category Name: " + categoryName; // Thay thế tên biến nếu cần
+}
 }

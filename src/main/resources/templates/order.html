@@ -39,20 +39,20 @@
 					<i class="fa fa-credit-card fa-4x" aria-hidden="true"></i>
 				</div>
 
-				<div class="row">
+				 <div class="row">
 					<div class="col-md-4 order-md-2 mb-4">
 						<h4 class="mb-3">Giỏ hàng</h4>
 						<ul class="list-group mb-3">
-							<li
-								class="list-group-item d-flex justify-content-between lh-condensed"
+							<li	class="list-group-item d-flex justify-content-between lh-condensed"
 								th:each="c : ${cart}">
+							
 								<div>
-									<h6 class="my-0" th:text="${c.productName}"></h6>
+									<h6 class="my-0" th:text="${c.product.productName}"></h6>
 									<small class="text-muted"><span
-										th:text="${#numbers.formatDecimal(c.price, 0, 'COMMA', 0, 'POINT')+' ₫'}"></span>
+										th:text="${#numbers.formatDecimal(c.product.price, 0, 'COMMA', 0, 'POINT')+' ₫'}"></span>
 										x <span th:text="${c.quantity}"></span></small>
 								</div>
-								<span th:text="${#numbers.formatDecimal(c.price * c.quantity, 0, 'COMMA', 0, 'POINT')+' ₫'}"></span>
+								<span th:text="${#numbers.formatDecimal(c.product.price * c.quantity, 0, 'COMMA', 0, 'POINT')+' ₫'}"></span>
 							</li>
 							<li class="list-group-item d-flex justify-content-between">
 								<span>Tổng thành tiền</span> 
@@ -76,8 +76,8 @@
 					<div class="col-md-8 order-md-1">
 						<h4 class="mb-3">Thông tin khách hàng</h4>
 
-						<div class="row">
-							<div class="col-md-12">
+		<div class="row">
+							<div class="col-md-12" >
 								<label>Họ tên</label> <input type="text" class="form-control" th:field="*{fullName}">
 							</div>
 							<div class="col-md-12">
@@ -96,7 +96,7 @@
 								<label for="kh_email">Email</label> <input type="text"
 									class="form-control" th:field="*{email}">
 							</div>
-						</div>
+						</div>  
 						<h4 class="mb-3">Hình thức thanh toán</h4>
 						<div class="d-block my-3">
 							<input type="radio" id="cast" name="payment" value="cast" checked>
@@ -112,10 +112,8 @@
 						Order Now
 					</button>
 				</div>
-				<input type="hidden" th:field="*{accountId}">
 				<input type="hidden" th:field="*{username}">
 				<input type="hidden" th:field="*{photo}">
-				<input type="hidden" th:field="*{admin}">
 				
 
 				

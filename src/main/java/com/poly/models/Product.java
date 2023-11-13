@@ -1,5 +1,6 @@
 package com.poly.models;
 
+import java.io.Serializable;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -9,7 +10,7 @@ import lombok.Data;
 @Entity
 @Table(name = "Products")
 @Data
-public class Product {
+public class Product implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "productid")

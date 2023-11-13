@@ -1,5 +1,6 @@
 package com.poly.controllers;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.poly.dao.AccountDAO;
 import com.poly.dao.OrderDAO;
 import com.poly.dao.OrderItemDAO;
@@ -31,13 +34,16 @@ public class OrderController {
     OrderItemDAO oiDAO;
 	@Autowired
 	AccountService accountService;
+
+	ObjectMapper objectMapper = new ObjectMapper();
 	@GetMapping("/order")
-    public String index(Model model) {
+    public String index(Model model) throws IOException {
 		Account acc = accountService.getAccountAuth();
 		for(ProductDTO p : cart.getItems().values()) {
 			System.out.println(p.toString());
 		}
 		model.addAttribute("user", acc);
+		System.out.println(objectMapper.writeValueAsString(acc));
 		model.addAttribute("cart", cart.getItems().values());
 		
 		model.addAttribute("amount", cart.getAmount());

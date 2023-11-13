@@ -65,9 +65,14 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="p in cart">
-                        <td>
-                            <img ng-src="/images/{{p.imageUrl}}" style="width: 100px; object-fit: cover;" class="mr-2">
-                        </td>
+                        <!-- <td>
+                            <img ng-src="/images/{{p.product.imageUrl}}" style="width: 100px; object-fit: cover;" class="mr-2">
+                        </td> -->
+                        
+                       <td>
+                        <img ng-src="/images/{{p.product.productImages[0].imageUrl}}" style="width: 60px;">
+                          
+                       </td>
                         <td>
                         	<span>{{p.product.productName+' - '+p.product.productId}}</span>
                         </td>
@@ -75,6 +80,7 @@
                             <span>{{p.product.price | vndCurrency}}</span>
                         </td>
                         <td>
+                            <!--gio hang-->
 							<div class="input-group">
 							    <button class="btn btn-primary a-amount" ng-click="modifyCart(p.product.productId, 'dis')"> - </button>
 							    <input class="form-control text-center frm-input" ng-model="p.quantity" min="1" max="20" style="width:40px;">
@@ -85,7 +91,7 @@
                         <td>
                             	<span>{{p.product.price * p.quantity | vndCurrency}}</span>
                         </td>
-                        <td>
+                           <td>
                             <div class="dropdown">
                                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                 <div class="dropdown-menu m-0">
@@ -93,13 +99,16 @@
                                 </div>
                             </div>
                         </td>
-                    </tr>
+                        
+                             </tr>
                     <tr>
                         <td colspan="4" class="text-center">
                             <h5 style="font-weight: 800;">Tổng đơn giá giỏ hàng:</h5>
                         </td>
                         <td>
-                            <span style="font-size: 24px;">{{getAmountCart() | vndCurrency}}</span>
+                         
+                            <span style="font-size: 24px;" ng-bind="amountCart | vndCurrency"></span>
+
                         </td>
                     </tr>
                 </tbody>

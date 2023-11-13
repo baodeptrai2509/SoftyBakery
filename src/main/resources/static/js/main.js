@@ -134,6 +134,7 @@ app.controller('ProductController', function ($scope, $http, $filter, $location,
 	//cart
 	$scope.cart = [];
 	$scope.cartLength = 0;
+	$scope.amountCart = 0;
 
 	$scope.imageClick = "";
 	$scope.productImages = [];
@@ -309,9 +310,12 @@ app.controller('ProductController', function ($scope, $http, $filter, $location,
 
 	$scope.modifyCart = function (id, method) {
 		$http.get(`${host}/cart/${method}/${id}`).then(function () {
+			
 			$scope.loadAllCart();
 		});
 	};
+	// tính thành tiền các giỏ hàng
+	
 
 	$scope.deleteCart = function (id) {
 		$http.get(`${host}/cart/delete/${id}`).then(function () {
@@ -326,10 +330,14 @@ app.controller('ProductController', function ($scope, $http, $filter, $location,
 	};
 
 	$scope.getAmountCart = function () {
-		return $scope.cart.reduce(function (total, product) {
-			return total + product.price * product.quantity;
-		}, 0);
+		console.log($scope.cart);
+		var overallResult = 200;
+		for (var i = 0; i < $scope.cart.length; i++) {
+			overallResult += total + product.price * quantity
+		}
+		$scope.amountCart = overallResult;
 	};
+
 
 	function initCartFromLocalStorage() {
 		$scope.cart = JSON.parse(localStorage.getItem('cart')) || [];
